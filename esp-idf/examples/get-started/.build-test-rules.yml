@@ -1,0 +1,11 @@
+# Documentation: .gitlab/ci/README.md#manifest-file-to-control-the-buildtest-apps
+
+examples/get-started/blink:
+  disable:
+    - if: IDF_TARGET in ["esp32p4", "esp32c5"]
+      temporary: true
+      reason: target esp32p4 and esp32c5 are not supported yet # TODO: IDF-8074, [ESP32C5] IDF-9006
+
+examples/get-started/hello_world:
+  enable:
+    - if: INCLUDE_DEFAULT == 1 or IDF_TARGET == "linux"
